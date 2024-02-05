@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+      integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <!-- html2canvas library -->
+    <!-- <script src="js/html2canvas.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- jsPDF library -->
+    <!-- <script src="js/jsPDF/dist/jspdf.umd.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" ></script>
+    <!-- <script> window.jsPDF = window.jspdf.jsPDF;</script> -->
+
+    <script src="scripts.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="btn-div">
+        <button
+          style="
+            margin-left: 40px;
+            border-radius: 5px;
+            padding: 8px;
+            background-color: black;
+            color: whitesmoke;
+            cursor: pointer;
+          "
+          class="download-btn"
+          onclick="Convert_HTML_To_PDF();"
+        >
+          Download PDF
+        </button>
+      </div>
+      <div class="wrapper" id="wrapper">
+        <section class="report-sec">
+          <div class="report-div">
+            <ul class="responsive-table">
+              <li class="table-header">
+                <div class="col col-1">Job Id</div>
+                <div class="col col-2">Customer Name</div>
+                <div class="col col-3">Amount Due</div>
+                <div class="col col-4">Payment Status</div>
+              </li>
+              <li class="table-row">
+                <div class="col col-1" data-label="Job Id">42235</div>
+                <div class="col col-2" data-label="Customer Name">John Doe</div>
+                <div class="col col-3" data-label="Amount">$350</div>
+                <div class="col col-4" data-label="Payment Status">Pending</div>
+              </li>
+              <li class="table-row">
+                <div class="col col-1" data-label="Job Id">42442</div>
+                <div class="col col-2" data-label="Customer Name">
+                  Jennifer Smith
+                </div>
+                <div class="col col-3" data-label="Amount">$220</div>
+                <div class="col col-4" data-label="Payment Status">Pending</div>
+              </li>
+              <li class="table-row">
+                <div class="col col-1" data-label="Job Id">42257</div>
+                <div class="col col-2" data-label="Customer Name">
+                  John Smith
+                </div>
+                <div class="col col-3" data-label="Amount">$341</div>
+                <div class="col col-4" data-label="Payment Status">Pending</div>
+              </li>
+              <li class="table-row">
+                <div class="col col-1" data-label="Job Id">42311</div>
+                <div class="col col-2" data-label="Customer Name">
+                  John Carpenter
+                </div>
+                <div class="col col-3" data-label="Amount">$115</div>
+                <div class="col col-4" data-label="Payment Status">Pending</div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="chart-sec">
+          <div class="chart-wrapper">
+            <canvas
+              id="chart_bar"
+              style="width: 50%; max-width: 50%; float: left"
+            ></canvas>
+            <canvas
+              id="chart_doughnut"
+              style="width: 100%; max-width: 50%; float: left"
+            ></canvas>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+      var yValues = [55, 49, 44, 24, 15];
+      var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
+
+      new Chart("chart_bar", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              backgroundColor: "#2b5797",
+              data: yValues,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "World Wide Production 2018",
+          },
+        },
+      });
+
+      new Chart("chart_doughnut", {
+        type: "doughnut",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              backgroundColor: barColors,
+              data: yValues,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "World Wide Production 2018",
+          },
+        },
+      });
+
+      
+
+
+    </script>
+  </body>
+</html>
